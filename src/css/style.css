@@ -1,0 +1,1315 @@
+/* Fuentes incluidas en el proyecto (funcionan sin internet) */
+@font-face {
+  font-family: 'VT323';
+  src: url('../assets/fonts/VT323-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('../assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+
+:root {
+  --vw-bg: #1a0b2e;
+  --vw-text: #e0e6ed;
+  --vw-pink: #ff71ce;
+  --vw-cyan: #01cdfe;
+  --vw-purple: #b967ff;
+  --vw-green: #05ffa1;  
+  --vw-yellow: #fffb96;
+  
+
+  --glow-pink: 0 0 5px #ff71ce, 0 0 10px #ff71ce, 0 0 20px #ff71ce;
+  --glow-cyan: 0 0 5px #01cdfe, 0 0 10px #01cdfe, 0 0 20px #01cdfe;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* ===== IMAGEN DE FONDO ===== */
+  background-image: url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  /* ===== COLOR DE RESPALDO ===== */
+  background-color: var(--vw-bg);
+  
+  color: var(--vw-text);
+  font-family: 'VT323', monospace; 
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+
+h1, h2, h3, h4 {
+  color: var(--vw-pink);
+  text-shadow: var(--glow-pink);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; color: var(--vw-cyan); text-shadow: var(--glow-cyan); }
+
+p {
+  margin-bottom: 1rem;
+}
+
+
+a {
+  color: var(--vw-cyan);
+  text-decoration: none;
+  text-shadow: 0 0 2px var(--vw-cyan);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--vw-yellow);
+  text-shadow: 0 0 8px var(--vw-yellow);
+}
+
+
+hr {
+  border: 0;
+  height: 2px;
+  background-color: var(--vw-purple);
+  box-shadow: 0 0 10px var(--vw-purple);
+  margin: 2rem 0;
+}
+
+
+button {
+  background-color: transparent;
+  color: var(--vw-pink);
+  border: 2px solid var(--vw-pink);
+  box-shadow: 0 0 5px var(--vw-pink), inset 0 0 5px var(--vw-pink);
+  padding: 0.5rem 1.5rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--vw-pink);
+  color: var(--vw-bg);
+  box-shadow: var(--glow-pink);
+}
+
+
+input, textarea {
+  background-color: rgba(26, 11, 46, 0.8);
+  border: 1px solid var(--vw-cyan);
+  color: var(--vw-cyan);
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 1.1rem;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 8px var(--vw-cyan);
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--vw-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vw-purple);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vw-pink);
+}
+
+.vapor-nav {
+    background-color: var(--vw-bg) !important; 
+    border-bottom: 2px solid var(--vw-purple);
+    box-shadow: 0 0 15px var(--vw-purple);
+}
+
+
+.vapor-nav .nav-link {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--vw-purple) !important;
+    font-size: 0.8rem; 
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+}
+
+
+.vapor-nav .nav-link:hover,
+.vapor-nav .nav-link.active {
+    color: var(--vw-cyan) !important;
+    text-shadow: var(--glow-cyan);
+}
+
+/* ============================================================
+   TABLA ESTILO STEAM
+   ============================================================ */
+
+.tabla-vaporwave {
+    background-color: #000000 !important;
+    border: 1px solid var(--vw-purple);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(185, 103, 255, 0.2);
+    width: 100%;
+    max-width: 100%;
+}
+
+.tabla-vaporwave td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(185, 103, 255, 0.15);
+    vertical-align: middle;
+    color: var(--vw-text) !important; /* Bootstrap lo dejaba negro fuera del panel */
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    background-color: #000000 !important;
+}
+
+.tabla-vaporwave tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-vaporwave tbody tr:hover {
+    background-color: rgba(1, 205, 254, 0.08);
+    box-shadow: inset 0 0 20px rgba(1, 205, 254, 0.03);
+    transition: all 0.3s ease;
+}
+
+/* === IMAGEN - MÁS GRANDE === */
+.tabla-vaporwave .img-items {
+    width: 200px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid rgba(1, 205, 254, 0.15);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.tabla-vaporwave .img-items:hover {
+    transform: scale(1.03);
+    border-color: var(--vw-cyan);
+    box-shadow: 0 0 25px rgba(1, 205, 254, 0.2);
+}
+
+/* === NOMBRE DEL ITEM === */
+.tabla-vaporwave .nombre-items {
+    font-weight: bold;
+    color: #ffffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+/* === GÉNERO / CATEGORÍA === */
+.tabla-vaporwave .genero-items {
+    font-size: 0.7rem;
+    color: var(--vw-cyan);
+    opacity: 0.7;
+    font-family: 'VT323', monospace;
+}
+
+/* === PRECIO - ESTILO STEAM === */
+.tabla-vaporwave .precio-items {
+    font-weight: bold;
+    color: var(--vw-green);
+    font-size: 1.3rem;
+    text-shadow: 0 0 15px rgba(5, 255, 161, 0.25);
+    white-space: nowrap;
+    text-align: right;
+    font-family: 'VT323', monospace;
+}
+
+/* === RANKING === */
+.tabla-vaporwave .ranking {
+    color: var(--vw-purple);
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+    text-align: center;
+    width: 40px;
+}
+
+/* RESPONSIVE - TABLA ESTILO STEAM */
+@media (max-width: 768px) {
+    .tabla-vaporwave td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+
+    .tabla-vaporwave .nombre-items {
+        font-size: 0.6rem;
+    }
+
+    .tabla-vaporwave .precio-items {
+        font-size: 1rem;
+    }
+
+    .tabla-vaporwave .img-items {
+        width: 120px;
+        height: 60px;
+    }
+
+    .tabla-vaporwave .genero-items {
+        font-size: 0.55rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tabla-vaporwave td {
+        padding: 6px 6px;
+        font-size: 0.75rem;
+    }
+
+    .tabla-vaporwave .nombre-items {
+        font-size: 0.5rem;
+    }
+
+    .tabla-vaporwave .precio-items {
+        font-size: 0.8rem;
+    }
+
+    .tabla-vaporwave .img-items {
+        width: 80px;
+        height: 50px;
+    }
+
+    .tabla-vaporwave .genero-items {
+        font-size: 0.5rem;
+    }
+}
+
+
+/* ============================================================
+   FOOTER VAPORWAVE - ANCHO COMPLETO
+   ============================================================ */
+
+.footer-vapor {
+    background-color: #0a0518;
+    border-top: 2px solid var(--vw-purple);
+    box-shadow: 0 -10px 40px rgba(185, 103, 255, 0.15);
+    padding: 40px 0 20px 0;
+    margin-top: 50px;
+    font-family: 'VT323', monospace;
+
+    /* ===== ANCHO COMPLETO ===== */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.footer-vapor .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-vapor .footer-titulo {
+    color: var(--vw-cyan);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.footer-vapor .footer-texto {
+    color: var(--vw-text);
+    font-size: 0.9rem;
+    opacity: 0.7;
+    line-height: 1.8;
+    margin-bottom: 5px;
+}
+
+.footer-vapor .footer-enlace {
+    color: var(--vw-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    line-height: 2;
+    display: block;
+}
+
+.footer-vapor .footer-enlace:hover {
+    color: var(--vw-cyan);
+    text-shadow: var(--glow-cyan);
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.footer-vapor .footer-contacto {
+    color: var(--vw-text);
+    font-size: 0.85rem;
+    opacity: 0.7;
+    line-height: 2;
+    margin-bottom: 5px;
+}
+
+.footer-vapor .footer-contacto i {
+    color: var(--vw-cyan);
+    width: 20px;
+    margin-right: 5px;
+}
+
+.footer-vapor .footer-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--vw-purple), transparent);
+    margin: 25px 0 15px 0;
+    box-shadow: 0 0 15px rgba(185, 103, 255, 0.15);
+}
+
+.footer-vapor .footer-copy {
+    color: var(--vw-text);
+    font-size: 0.7rem;
+    opacity: 0.3;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.footer-vapor .footer-copy a {
+    color: var(--vw-purple);
+    text-decoration: none;
+    opacity: 0.4;
+}
+
+.footer-vapor .footer-copy a:hover {
+    color: var(--vw-cyan);
+    opacity: 1;
+    text-shadow: var(--glow-cyan);
+}
+
+.footer-vapor .social-icon {
+    display: inline-block;
+    color: var(--vw-purple);
+    font-size: 1.4rem;
+    margin: 0 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-vapor .social-icon:hover {
+    color: var(--vw-pink);
+    text-shadow: var(--glow-pink);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .footer-vapor {
+        padding: 25px 0 15px 0;
+        margin-top: 30px;
+    }
+    
+    .footer-vapor .footer-titulo {
+        font-size: 0.7rem;
+        margin-top: 15px;
+    }
+    
+    .footer-vapor .footer-texto {
+        font-size: 0.8rem;
+    }
+    
+    .footer-vapor .footer-enlace {
+        font-size: 0.75rem;
+    }
+    
+    .footer-vapor .footer-contacto {
+        font-size: 0.75rem;
+    }
+    
+    .footer-vapor .social-icon {
+        font-size: 1.2rem;
+        margin: 0 6px;
+    }
+}
+
+/* ============================================================
+   TARJETAS DE PRODUCTOS (VAPORWAVE)
+   ============================================================ */
+
+.vapor-card {
+    background-color: rgba(26, 11, 46, 0.85) !important;
+    border: 2px solid var(--vw-purple);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(185, 103, 255, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'VT323', monospace;
+}
+
+.vapor-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--vw-cyan);
+    box-shadow: 0 0 25px rgba(1, 205, 254, 0.4);
+}
+
+.vapor-img {
+    border-bottom: 2px solid var(--vw-purple);
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: #000;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+}
+
+.vapor-title {
+    color: var(--vw-pink);
+    text-shadow: 0 0 5px var(--vw-pink);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.vapor-price {
+    color: var(--vw-green);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(5, 255, 161, 0.3);
+    margin-bottom: 10px;
+}
+
+.btn-vapor {
+    background-color: rgba(255, 113, 206, 0.15) !important;
+    color: var(--vw-pink) !important;
+    border: 2px solid var(--vw-pink) !important;
+    box-shadow: 0 0 8px var(--vw-pink), inset 0 0 8px rgba(255, 113, 206, 0.3) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-vapor:hover:not(:disabled) {
+    background-color: var(--vw-pink) !important;
+    color: var(--vw-bg) !important;
+    box-shadow: 0 0 15px var(--vw-pink) !important;
+}
+
+.btn-vapor:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   PESTAÑAS (TABS) ESTILO NAVBAR VAPORWAVE
+   ============================================================ */
+.btn-vapor-tab {
+    background-color: var(--vw-bg) !important;
+    color: var(--vw-purple) !important;
+    border: 2px solid var(--vw-purple) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    margin: 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-vapor-tab:hover {
+    background-color: var(--vw-bg) !important;
+    color: var(--vw-cyan) !important;
+    border-color: var(--vw-cyan) !important;
+    text-shadow: 0 0 8px var(--vw-cyan);
+    box-shadow: 0 0 10px rgba(1, 205, 254, 0.3);
+}
+
+.btn-vapor-tab.active {
+    background-color: var(--vw-bg) !important;
+    color: var(--vw-cyan) !important;
+    border-color: var(--vw-cyan) !important;
+    text-shadow: 0 0 8px var(--vw-cyan);
+    box-shadow: 0 0 15px rgba(1, 205, 254, 0.4);
+}
+
+/* ============================================================
+   TÍTULO DE PÁGINA ESTILO CAJA NEÓN (CENTRADO)
+   ============================================================ */
+.titulo-caja-vapor {
+    background-color: var(--vw-bg) !important;
+    color: var(--vw-purple) !important;
+    border: 2px solid var(--vw-purple) !important;
+    padding: 15px 40px !important;
+    letter-spacing: 2px;
+    
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--vw-cyan), 0 0 20px var(--vw-cyan);
+    box-shadow: 0 0 10px rgba(185, 103, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.titulo-caja-vapor:hover {
+    color: var(--vw-cyan) !important;
+    border-color: var(--vw-cyan) !important;
+    text-shadow: 0 0 8px var(--vw-cyan);
+    box-shadow: 0 0 15px rgba(1, 205, 254, 0.4);
+}
+
+.login-wrapper {
+  display: flex;
+  min-height: 86vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formulario {
+  width: 100%;
+  max-width: 380px;
+  padding: 2rem;
+  box-sizing: border-box;
+  padding: 0%;
+}
+
+.titulo-login {
+  margin-top: 3vh;
+  color: var(--vw-pink);
+  text-shadow: var(--glow-pink);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contenedor {
+  background-image: url(login.jpeg);
+  border-style: double;
+  border-color: var(--vw-pink);
+  box-shadow: var(--glow-pink);
+  display: flex;
+  min-height: 55vh;
+  min-width: 53vh;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 11vh;
+  background-size: cover;
+}
+
+.fondo-editar-producto {
+    background-image: url('login.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 3rem; 
+}
+
+.titulo-fondo-negro {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;       
+    padding: 5px 15px;         
+    display: inline-block;
+    color: aliceblue;     
+}
+
+
+
+.card {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.card-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #0d0d11 !important;
+    color: #ffffff !important;
+    padding: 1.5rem !important;
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card-overlay.active {
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
+}
+
+.texto-blanco {
+    color: #ffffff !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    opacity: 0.95;
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+/* ============================================================
+   ADMIN — LAYOUT CON SIDEBAR
+   ============================================================ */
+
+.admin-wrapper {
+  display: flex;
+  min-height: 80vh;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: rgba(26, 11, 46, 0.9);
+  border: 2px solid var(--vw-purple);
+  border-radius: 8px;
+  padding: 1rem 0;
+  box-shadow: 0 0 15px rgba(185, 103, 255, 0.25);
+  align-self: flex-start;
+}
+
+.admin-sidebar .sidebar-titulo {
+  color: var(--vw-cyan);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 0 1rem 1rem 1rem;
+  border-bottom: 1px solid rgba(185, 103, 255, 0.3);
+  margin-bottom: 0.75rem;
+  text-shadow: var(--glow-cyan);
+}
+
+.admin-sidebar .sidebar-link {
+  display: block;
+  padding: 0.6rem 1.25rem;
+  color: var(--vw-purple);
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.admin-sidebar .sidebar-link:hover {
+  color: var(--vw-cyan);
+  background-color: rgba(1, 205, 254, 0.06);
+  border-left-color: var(--vw-cyan);
+}
+
+.admin-sidebar .sidebar-link.active {
+  color: var(--vw-cyan);
+  background-color: rgba(1, 205, 254, 0.1);
+  border-left-color: var(--vw-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.admin-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .admin-sidebar {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   UNIFORMIDAD ADMIN — Forzar estética vaporwave en Bootstrap
+   ============================================================ */
+
+.form-label {
+  color: var(--vw-cyan);
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 4px rgba(1, 205, 254, 0.4);
+  margin-bottom: 0.25rem;
+}
+
+.form-control,
+.form-select,
+input,
+textarea,
+select {
+  background-color: rgba(26, 11, 46, 0.85) !important;
+  border: 1px solid var(--vw-purple) !important;
+  color: var(--vw-text) !important;
+  font-family: 'VT323', monospace !important;
+  font-size: 1.05rem !important;
+  padding: 0.4rem 0.6rem !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  background-color: rgba(26, 11, 46, 0.95) !important;
+  border-color: var(--vw-cyan) !important;
+  box-shadow: 0 0 8px rgba(1, 205, 254, 0.5) !important;
+  color: var(--vw-cyan) !important;
+  outline: none !important;
+}
+
+.form-select option,
+select option {
+  background-color: var(--vw-bg);
+  color: var(--vw-text);
+}
+
+.form-check-input {
+  background-color: rgba(26, 11, 46, 0.85);
+  border: 1px solid var(--vw-purple);
+}
+.form-check-input:checked {
+  background-color: var(--vw-cyan);
+  border-color: var(--vw-cyan);
+}
+.form-check-label {
+  color: var(--vw-text);
+  font-family: 'VT323', monospace;
+}
+
+.tabla-vaporwave thead th,
+.tabla-vaporwave th {
+  background-color: rgba(185, 103, 255, 0.15) !important;
+  color: var(--vw-cyan) !important;
+  font-family: 'VT323', monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--vw-purple) !important;
+  padding: 10px 15px !important;
+}
+
+.tabla-vaporwave td {
+  background-color: rgba(0, 0, 0, 0.55) !important;
+}
+
+.tabla-vaporwave tbody tr:hover td {
+  background-color: rgba(1, 205, 254, 0.08) !important;
+}
+
+.table {
+  color: var(--vw-text);
+}
+
+.btn {
+  font-family: 'VT323', monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-width: 2px !important;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: transparent !important;
+  color: var(--vw-cyan) !important;
+  border-color: var(--vw-cyan) !important;
+  box-shadow: 0 0 6px rgba(1, 205, 254, 0.5), inset 0 0 6px rgba(1, 205, 254, 0.2);
+}
+.btn-primary:hover {
+  background-color: var(--vw-cyan) !important;
+  color: var(--vw-bg) !important;
+  box-shadow: 0 0 12px var(--vw-cyan);
+}
+
+.btn-success {
+  background-color: transparent !important;
+  color: var(--vw-green) !important;
+  border-color: var(--vw-green) !important;
+  box-shadow: 0 0 6px rgba(5, 255, 161, 0.5), inset 0 0 6px rgba(5, 255, 161, 0.2);
+}
+.btn-success:hover {
+  background-color: var(--vw-green) !important;
+  color: var(--vw-bg) !important;
+  box-shadow: 0 0 12px var(--vw-green);
+}
+
+.btn-warning {
+  background-color: transparent !important;
+  color: var(--vw-yellow) !important;
+  border-color: var(--vw-yellow) !important;
+  box-shadow: 0 0 6px rgba(255, 251, 150, 0.5), inset 0 0 6px rgba(255, 251, 150, 0.2);
+}
+.btn-warning:hover {
+  background-color: var(--vw-yellow) !important;
+  color: var(--vw-bg) !important;
+  box-shadow: 0 0 12px var(--vw-yellow);
+}
+
+.btn-danger {
+  background-color: transparent !important;
+  color: var(--vw-pink) !important;
+  border-color: var(--vw-pink) !important;
+  box-shadow: 0 0 6px rgba(255, 113, 206, 0.5), inset 0 0 6px rgba(255, 113, 206, 0.2);
+}
+.btn-danger:hover {
+  background-color: var(--vw-pink) !important;
+  color: var(--vw-bg) !important;
+  box-shadow: 0 0 12px var(--vw-pink);
+}
+
+.btn-secondary {
+  background-color: transparent !important;
+  color: var(--vw-purple) !important;
+  border-color: var(--vw-purple) !important;
+  box-shadow: 0 0 6px rgba(185, 103, 255, 0.5), inset 0 0 6px rgba(185, 103, 255, 0.2);
+}
+.btn-secondary:hover {
+  background-color: var(--vw-purple) !important;
+  color: var(--vw-bg) !important;
+  box-shadow: 0 0 12px var(--vw-purple);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.9rem !important;
+}
+
+.nav-tabs {
+  border-bottom: 2px solid var(--vw-purple);
+}
+.nav-tabs .nav-link {
+  color: var(--vw-purple);
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.nav-tabs .nav-link:hover {
+  color: var(--vw-cyan);
+  border-color: var(--vw-purple) var(--vw-purple) transparent;
+}
+.nav-tabs .nav-link.active {
+  background-color: rgba(1, 205, 254, 0.1);
+  color: var(--vw-cyan);
+  border-color: var(--vw-cyan) var(--vw-cyan) transparent;
+  text-shadow: var(--glow-cyan);
+}
+
+.alert {
+  font-family: 'VT323', monospace;
+  border-width: 2px;
+}
+.alert-danger {
+  background-color: rgba(255, 113, 206, 0.1);
+  border-color: var(--vw-pink);
+  color: var(--vw-pink);
+}
+.alert-success {
+  background-color: rgba(5, 255, 161, 0.1);
+  border-color: var(--vw-green);
+  color: var(--vw-green);
+}
+.alert-info {
+  background-color: rgba(1, 205, 254, 0.1);
+  border-color: var(--vw-cyan);
+  color: var(--vw-cyan);
+}
+
+a {
+  color: var(--vw-cyan);
+}
+a:hover {
+  color: var(--vw-pink);
+}
+
+.text-muted,
+small {
+  color: rgba(224, 230, 237, 0.65) !important;
+}
+
+dl.row dt {
+  color: var(--vw-cyan);
+  font-weight: normal;
+}
+dl.row dd {
+  color: var(--vw-text);
+}
+
+/* ============================================================
+   ADMIN — FORZAR TEXTO BLANCO EN TODO EL CONTENIDO
+   ============================================================ */
+
+.admin-content,
+.admin-content h1,
+.admin-content h2,
+.admin-content h3,
+.admin-content h4,
+.admin-content h5,
+.admin-content h6,
+.admin-content p,
+.admin-content span,
+.admin-content div,
+.admin-content td,
+.admin-content th,
+.admin-content label,
+.admin-content strong,
+.admin-content small {
+  color: #ffffff !important;
+}
+
+.admin-content a {
+  color: var(--vw-cyan) !important;
+}
+.admin-content a:hover {
+  color: var(--vw-pink) !important;
+}
+
+.admin-content table thead th {
+  color: var(--vw-cyan) !important;
+  text-shadow: 0 0 6px rgba(1, 205, 254, 0.5);
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.admin-content table tbody td {
+  color: #ffffff !important;
+  background-color: rgba(0, 0, 0, 0.55) !important;
+  vertical-align: middle;
+}
+
+.admin-content table tbody tr:hover td {
+  background-color: rgba(1, 205, 254, 0.1) !important;
+}
+
+.admin-content input,
+.admin-content select,
+.admin-content textarea {
+  color: #ffffff !important;
+  background-color: rgba(26, 11, 46, 0.85) !important;
+  border: 1px solid var(--vw-purple) !important;
+}
+.admin-content input:focus,
+.admin-content select:focus,
+.admin-content textarea:focus {
+  border-color: var(--vw-cyan) !important;
+  box-shadow: 0 0 8px rgba(1, 205, 254, 0.5) !important;
+  outline: none !important;
+}
+/* =====================================================================
+   AJUSTES DE LEGIBILIDAD (textos que se perdían con el fondo)
+   ===================================================================== */
+
+/* Recuadro traslucido reutilizable (mismo estilo que las cards) */
+.caja-traslucida {
+    background-color: rgba(26, 11, 46, 0.85);
+    border: 2px solid var(--vw-purple);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(185, 103, 255, 0.2);
+    padding: 1.75rem 2rem;
+}
+
+/* Subtítulo bajo los títulos de página (Ofertas, Blogs, Contactos) */
+.subtitulo-vapor {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.4rem 1.5rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: var(--vw-pink);
+    text-shadow: var(--glow-pink);
+    background-color: rgba(26, 11, 46, 0.8);
+    border: 1px solid var(--vw-purple);
+    border-radius: 8px;
+}
+
+/* Carrusel del inicio: precio en el mismo rosado del título, legible sobre imágenes claras */
+.precio-carrusel {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--vw-pink);
+    text-shadow: 0 0 10px rgba(255, 113, 206, 0.5);
+}
+
+/* Nuevos lanzamientos: nombre en rosado y precio en verde neón.
+   (td necesita !important porque la regla general de la tabla también lo usa) */
+.tabla-vaporwave .nombre-items {
+    color: var(--vw-pink);
+    text-shadow: 0 0 10px rgba(255, 113, 206, 0.5);
+}
+.tabla-vaporwave td.precio-items {
+    color: var(--vw-green) !important;
+    text-shadow: 0 0 10px rgba(5, 255, 161, 0.35);
+}
+
+/* Cards de blog */
+.border-purple {
+    border: 2px solid var(--vw-purple) !important;
+    box-shadow: 0 0 15px rgba(185, 103, 255, 0.2);
+}
+.text-pink {
+    color: var(--vw-pink) !important;
+    text-shadow: 0 0 5px var(--vw-pink);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+.genero-juego {
+    color: var(--vw-cyan);
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+}
+
+/* Fondo de las cards de blog con la paleta de la tienda (antes gris Bootstrap) */
+.card.bg-dark.border-purple {
+    background-color: rgba(26, 11, 46, 0.92) !important;
+}
+
+/* Carrusel: recuadro traslúcido detrás del título y el precio (como en Nosotros) */
+.caption-steam {
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100%;
+    padding: 1rem 2rem 2.2rem !important; /* espacio abajo para los indicadores */
+    background-color: rgba(26, 11, 46, 0.85);
+    border-top: 2px solid var(--vw-purple);
+    box-shadow: 0 -4px 20px rgba(185, 103, 255, 0.3);
+}
+
+/* Título del carrusel con el mismo estilo que los nombres de Nuevos lanzamientos */
+.caption-steam .titulo-juego {
+    font-family: 'Press Start 2P', cursive;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    color: var(--vw-pink);
+    text-shadow: 0 0 10px rgba(255, 113, 206, 0.5);
+    text-transform: none;
+    margin-bottom: 0.75rem;
+}
+
+/* Avisos (ej. "Inicia sesión para crear un blog") legibles sobre el fondo */
+.aviso-vapor {
+    background-color: rgba(26, 11, 46, 0.85) !important;
+    border: 1px solid var(--vw-cyan) !important;
+    color: var(--vw-text) !important;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+}
+.aviso-vapor a {
+    color: var(--vw-pink);
+    text-shadow: 0 0 6px var(--vw-pink);
+}
+
+@media (max-width: 576px) {
+    .caption-steam { padding: 0.6rem 1rem 1.8rem !important; }
+    .caption-steam .titulo-juego { font-size: 0.65rem; }
+    .precio-carrusel { font-size: 1.1rem; }
+}
+
+/* Flechas del carrusel: sin bordes rosados (venían de la regla global de button).
+   Solo se marcan al pasar el mouse. */
+.carousel-control-prev,
+.carousel-control-next {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: rgba(255, 113, 206, 0.15) !important;
+    box-shadow: inset 0 0 25px rgba(255, 113, 206, 0.35) !important;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 0 4px #000);
+}
+
+/* Indicadores del carrusel: barritas simples, sin el borde de la regla global */
+.carousel-indicators [data-bs-target] {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    background-color: var(--vw-pink) !important;
+}
+.carousel-indicators .active {
+    box-shadow: 0 0 8px var(--vw-pink) !important;
+}
+
+/* =====================================================================
+   TELÉFONOS: que nada se salga del ancho de la pantalla
+   ===================================================================== */
+@media (max-width: 576px) {
+    /* Títulos en recuadro (OFERTAS, BLOGS, SOBRE NOSOTROS...) */
+    .titulo-caja-vapor {
+        font-size: 1.15rem !important;
+        padding: 10px 14px !important;
+        letter-spacing: 1px;
+        line-height: 1.5;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+    h2.titulo-caja-vapor { font-size: 1rem !important; }
+
+    .subtitulo-vapor { font-size: 1.35rem; padding: 0.35rem 1rem; }
+    .caja-traslucida { padding: 1.25rem 1rem; }
+}
+
+/* Red de seguridad: si algo se pasa de ancho, no aparece scroll lateral
+   (clip no rompe el navbar fijo como lo haría overflow: hidden) */
+html, body {
+    overflow-x: clip;
+}
+
+/* --- Teléfonos: panel admin con el menú en "chips" en vez de lista larga --- */
+@media (max-width: 768px) {
+    .admin-sidebar { padding: 0.75rem; }
+    .admin-sidebar .sidebar-titulo { padding: 0 0 0.6rem 0; margin-bottom: 0.6rem; }
+    .admin-sidebar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        justify-content: center;
+    }
+    .admin-sidebar .sidebar-link {
+        padding: 0.25rem 0.7rem;
+        font-size: 1rem;
+        border: 1px solid rgba(185, 103, 255, 0.5);
+        border-radius: 6px;
+    }
+    .admin-sidebar .sidebar-link:hover,
+    .admin-sidebar .sidebar-link.active {
+        border-color: var(--vw-cyan);
+        border-left-color: var(--vw-cyan);
+    }
+}
+
+/* --- Teléfonos: cards de productos/ofertas en 2 columnas sin cortar palabras --- */
+@media (max-width: 576px) {
+    .vapor-card .vapor-title {
+        font-size: 0.55rem;
+        line-height: 1.6;
+        letter-spacing: 0;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
+    }
+    .vapor-card .vapor-img { height: 140px; padding: 6px; }
+    .vapor-card .vapor-price { font-size: 1.15rem; }
+    .vapor-card .card-body { padding: 0.6rem; }
+    .vapor-card .card-body .btn {
+        font-size: 0.6rem !important;
+        padding: 0.4rem 0.3rem !important;
+        letter-spacing: 0;
+        white-space: normal;
+        line-height: 1.3;
+    }
+
+    /* Carrito: los botones de cantidad y eliminar pasan a una fila propia */
+    .carrito-acciones {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.75rem;
+    }
+    .carrito-acciones p { margin: 0 !important; }
+}
+
+/* Pestañas de filtro en Productos (Todo / Cosplay / Coleccionables) */
+.tabs-vapor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.tab-vapor {
+    padding: 0.5rem 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--vw-purple);
+    background-color: rgba(26, 11, 46, 0.85);
+    border: 2px solid var(--vw-purple);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(185, 103, 255, 0.2);
+    transition: all 0.2s ease;
+}
+.tab-vapor:hover {
+    color: var(--vw-cyan);
+    border-color: var(--vw-cyan);
+}
+.tab-vapor.activa {
+    color: var(--vw-bg);
+    background-color: var(--vw-cyan);
+    border-color: var(--vw-cyan);
+    box-shadow: var(--glow-cyan);
+}
+@media (max-width: 576px) {
+    .tab-vapor { padding: 0.45rem 0.8rem; font-size: 0.6rem; }
+}
+
+/* Etiqueta "Desde" sobre el precio de las colecciones */
+.desde-coleccion {
+    color: var(--vw-cyan);
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Botón "Iniciar sesión con Google" (propio, con la paleta de la tienda) */
+.btn-google {
+    width: 100%;
+    white-space: nowrap;
+    padding: 0.7rem 1rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: none;
+    color: #fff;
+    background-color: rgba(26, 11, 46, 0.9);
+    border: 2px solid var(--vw-cyan);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(1, 205, 254, 0.35);
+    transition: all 0.2s ease;
+}
+.btn-google:hover:not(:disabled) {
+    color: var(--vw-bg);
+    background-color: var(--vw-cyan);
+    box-shadow: var(--glow-cyan);
+}
+.btn-google:disabled { opacity: 0.6; cursor: wait; }
