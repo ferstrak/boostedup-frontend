@@ -1,0 +1,304 @@
+import { useState, useEffect } from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import {
+  getBlog,
+  eliminarBlog,
+  crearComentario,
+  eliminarComentario,
+  editarComentario
+} from '../services/api'
+import { useAuth } from '../context/AuthContext'
+
+function ComentarioItem({ comentario, respuestas, onResponder, usuario, onEliminar, onEditar, blogAutorId }) {
+  const [respondiendo, setRespondiendo] = useState(false)
+  const [texto, setTexto] = useState('')
+  const [editando, setEditando] = useState(false)
+  const [textoEditado, setTextoEditado] = useState(comentario.comentario)
+
+  const guardarEdicion = async (e) => {
+    e.preventDefault()
+    if (!textoEditado.trim()) return
+    await onEditar(comentario.id, textoEditado)
+    setEditando(false)
+  }
+
+  const enviarRespuesta = async (e) => {
+    e.preventDefault()
+    if (!texto.trim()) return
+    await onResponder(comentario.id, texto)
+    setTexto('')
+    setRespondiendo(false)
+  }
+
+  // Borrar comentarios: solo admin. Editar: el autor o un admin.
+  const puedeEliminar = usuario && usuario.rol === 'admin'
+  const puedeEditar =
+    usuario && (usuario.rol === 'admin' || usuario.id === comentario.usuario_id)
+
+  return (
+    <div className="vapor-card p-3 mb-3">
+      <div className="d-flex justify-content-between">
+        <strong style={{ color: 'var(--vw-cyan)' }}>
+          {comentario.autor_nombre} {comentario.autor_apellido}
+        </strong>
+        <small style={{ opacity: 0.6 }}>
+          {comentario.fecha ? new Date(comentario.fecha).toLocaleString('es-CL') : ''}
+        </small>
+      </div>
+      {editando ? (
+        <form onSubmit={guardarEdicion} className="mt-2 mb-2">
+          <textarea
+            className="form-control mb-2"
+            rows="2"
+            value={textoEditado}
+            onChange={(e) => setTextoEditado(e.target.value)}
+          />
+          <button type="submit" className="btn btn-sm btn-primary me-2">Guardar</button>
+          <button type="button" className="btn btn-sm btn-secondary" onClick={() => setEditando(false)}>Cancelar</button>
+        </form>
+      ) : (
+        <p style={{ marginTop: '0.5rem' }}>{comentario.comentario}</p>
+      )}
+
+      <div className="d-flex gap-2">
+        {usuario && (
+          <button
+            className="btn btn-sm btn-secondary"
+            onClick={() => setRespondiendo(!respondiendo)}
+          >
+            Responder
+          </button>
+        )}
+        {puedeEditar && !editando && (
+          <button
+            className="btn btn-sm btn-warning"
+            onClick={() => { setTextoEditado(comentario.comentario); setEditando(true) }}
+          >
+            Editar
+          </button>
+        )}
+        {puedeEliminar && (
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => onEliminar(comentario.id)}
+          >
+            Eliminar
+          </button>
+        )}
+      </div>
+
+      {respondiendo && (
+        <form onSubmit={enviarRespuesta} className="mt-2">
+          <textarea
+            className="form-control mb-2"
+            rows="2"
+            placeholder="Escribe tu respuesta..."
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+          />
+          <button type="submit" className="btn btn-sm btn-primary">Enviar respuesta</button>
+        </form>
+      )}
+
+      {respuestas.length > 0 && (
+        <div style={{ marginLeft: '2rem', marginTop: '1rem' }}>
+          {respuestas.map(r => (
+            <ComentarioItem
+              key={r.id}
+              comentario={r}
+              respuestas={[]}
+              onResponder={onResponder}
+              usuario={usuario}
+              onEliminar={onEliminar}
+              onEditar={onEditar}
+              blogAutorId={blogAutorId}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function BlogDetalle() {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const { usuario } = useAuth()
+
+  const [blog, setBlog] = useState(null)
+  const [cargando, setCargando] = useState(true)
+  const [error, setError] = useState('')
+  const [comentarioTexto, setComentarioTexto] = useState('')
+  const [enviando, setEnviando] = useState(false)
+
+  const cargar = async () => {
+    setCargando(true)
+    setError('')
+    try {
+      const data = await getBlog(id)
+      setBlog(data)
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setCargando(false)
+    }
+  }
+
+  useEffect(() => { cargar() }, [id])
+
+  const enviarComentario = async (e) => {
+    e.preventDefault()
+    if (!usuario) {
+      navigate('/login')
+      return
+    }
+    if (!comentarioTexto.trim()) return
+    setEnviando(true)
+    try {
+      await crearComentario(id, { comentario: comentarioTexto })
+      setComentarioTexto('')
+      await cargar()
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  const responder = async (padreId, texto) => {
+    if (!usuario) {
+      navigate('/login')
+      return
+    }
+    try {
+      await crearComentario(id, { comentario: texto, comentario_padre_id: padreId })
+      await cargar()
+    } catch (e) {
+      setError(e.message)
+    }
+  }
+
+  const borrarComentario = async (comentarioId) => {
+    if (!usuario) return
+    if (!confirm('¿Eliminar este comentario?')) return
+    try {
+      await eliminarComentario(comentarioId)
+      await cargar()
+    } catch (e) {
+      setError(e.message)
+    }
+  }
+
+  const guardarComentarioEditado = async (comentarioId, texto) => {
+    try {
+      await editarComentario(comentarioId, texto)
+      await cargar()
+    } catch (e) {
+      setError(e.message)
+    }
+  }
+
+  const borrarBlog = async () => {
+    if (!usuario) return
+    if (!confirm('¿Eliminar este blog completo?')) return
+    try {
+      await eliminarBlog(id)
+      navigate('/blogs')
+    } catch (e) {
+      setError(e.message)
+    }
+  }
+
+  if (cargando) return <div className="container my-5"><p>Cargando...</p></div>
+  if (error && !blog) return <div className="container my-5"><div className="alert alert-danger">{error}</div></div>
+  if (!blog) return <div className="container my-5"><p>Blog no encontrado.</p></div>
+
+  const puedeEditar =
+    usuario && (usuario.rol === 'admin' || usuario.id === blog.usuario_id)
+
+  // Separar comentarios raíz y respuestas
+  const comentariosRaiz = blog.comentarios?.filter(c => !c.comentario_padre_id) || []
+  const respuestasPorPadre = {}
+  blog.comentarios?.forEach(c => {
+    if (c.comentario_padre_id) {
+      if (!respuestasPorPadre[c.comentario_padre_id]) respuestasPorPadre[c.comentario_padre_id] = []
+      respuestasPorPadre[c.comentario_padre_id].push(c)
+    }
+  })
+
+  return (
+    <div className="container my-5">
+      <Link to="/blogs" className="btn btn-secondary mb-3">← Volver a blogs</Link>
+
+      {error && <div className="alert alert-danger">{error}</div>}
+
+      <div className="vapor-card p-4 mb-4">
+        <h1 style={{ color: 'var(--vw-pink)' }}>{blog.titulo}</h1>
+        <p style={{ opacity: 0.7 }}>
+          Por {blog.autor_nombre} {blog.autor_apellido} · {new Date(blog.fecha).toLocaleDateString('es-CL')}
+          {blog.categoria ? ` · ${blog.categoria}` : ''}
+        </p>
+
+        {blog.img && (
+          <img
+            src={blog.img}
+            alt={blog.titulo}
+            style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', marginBottom: '1.5rem' }}
+          />
+        )}
+
+        <p style={{ whiteSpace: 'pre-wrap' }}>{blog.contenido}</p>
+
+        {puedeEditar && (
+          <div className="mt-4 d-flex gap-2">
+            <Link to={`/blogs/${blog.id}/editar`} className="btn btn-warning">Editar</Link>
+            <button className="btn btn-danger" onClick={borrarBlog}>Eliminar blog</button>
+          </div>
+        )}
+      </div>
+
+      <h3 style={{ color: 'var(--vw-cyan)' }}>
+        Comentarios ({blog.comentarios?.length || 0})
+      </h3>
+
+      {usuario ? (
+        <form onSubmit={enviarComentario} className="mb-4">
+          <textarea
+            className="form-control mb-2"
+            rows="3"
+            placeholder="Escribe un comentario..."
+            value={comentarioTexto}
+            onChange={(e) => setComentarioTexto(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn btn-primary" disabled={enviando}>
+            {enviando ? 'Enviando...' : 'Comentar'}
+          </button>
+        </form>
+      ) : (
+        <div className="alert alert-info">
+          <Link to="/login">Inicia sesión</Link> para comentar.
+        </div>
+      )}
+
+      {comentariosRaiz.length === 0 ? (
+        <p style={{ opacity: 0.6 }}>Aún no hay comentarios.</p>
+      ) : (
+        comentariosRaiz.map(c => (
+          <ComentarioItem
+            key={c.id}
+            comentario={c}
+            respuestas={respuestasPorPadre[c.id] || []}
+            onResponder={responder}
+            usuario={usuario}
+            onEliminar={borrarComentario}
+            onEditar={guardarComentarioEditado}
+            blogAutorId={blog.usuario_id}
+          />
+        ))
+      )}
+    </div>
+  )
+}
+
+export default BlogDetalle
