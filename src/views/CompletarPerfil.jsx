@@ -75,7 +75,7 @@ function CompletarPerfil() {
             title="Entre 3 y 20 caracteres: letras, números, punto, guion o guion bajo"
             required
           />
-          <div className="form-text" style={{ color: 'var(--vw-text)', opacity: 0.6 }}>
+          <div className="form-text ayuda-campo">
             Es el nombre que se verá en los blogs y comentarios. Entre 3 y 20 caracteres, sin espacios.
           </div>
         </div>

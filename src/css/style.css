@@ -1294,7 +1294,8 @@ html, body {
 /* Botón "Iniciar sesión con Google" (propio, con la paleta de la tienda) */
 .btn-google {
     width: 100%;
-    white-space: nowrap;
+    white-space: normal;   /* en pantallas angostas el texto baja de línea en vez de salirse */
+    line-height: 1.6;
     padding: 0.7rem 1rem;
     font-family: 'Press Start 2P', cursive;
     font-size: 0.7rem;
@@ -1313,3 +1314,20 @@ html, body {
     box-shadow: var(--glow-cyan);
 }
 .btn-google:disabled { opacity: 0.6; cursor: wait; }
+
+@media (max-width: 576px) {
+    .btn-google { font-size: 0.6rem; letter-spacing: 0; padding: 0.7rem 0.6rem; }
+}
+
+/* Texto de ayuda bajo un campo: legible aunque detrás esté el sol rosado del fondo */
+.ayuda-campo {
+    color: #fff;
+    font-size: 0.95rem;
+    text-shadow: 0 0 3px #000, 0 0 6px #000, 1px 1px 0 #000;
+}
+
+/* Texto de ejemplo dentro de los campos: visible sobre el fondo oscuro */
+.form-control::placeholder {
+    color: rgba(224, 230, 237, 0.55);
+    opacity: 1;
+}
