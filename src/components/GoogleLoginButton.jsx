@@ -54,7 +54,7 @@ function GoogleLoginButton({ texto = 'signin_with', onError }) {
       login(sesion)
       const u = sesion.usuario
       // Las cuentas nuevas de Google no traen dirección: se pide completar el perfil
-      if (!u.direccion || !u.region || !u.comuna) navigate('/completar-perfil')
+      if (!u.nickname || !u.direccion || !u.region || !u.comuna) navigate('/completar-perfil')
       else navigate(rutaInicialPorRol(u))
     } catch (e) {
       onError?.(e.message)

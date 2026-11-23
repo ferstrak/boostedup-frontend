@@ -13,6 +13,7 @@ const FORM_VACIO = {
   nombre: '',
   apellido: '',
   correo: '',
+  nickname: '',
   clave: '',
   fechaNacimiento: '',
   rol: 'cliente',
@@ -100,6 +101,7 @@ function AdminUsuarios() {
       nombre: u.nombre || '',
       apellido: u.apellido || '',
       correo: u.correo || '',
+      nickname: u.nickname || '',
       clave: '', // se deja vacía, opcional
       fechaNacimiento: u.fecha_nacimiento ? u.fecha_nacimiento.substring(0, 10) : '',
       rol: u.rol || 'cliente',
@@ -153,6 +155,19 @@ function AdminUsuarios() {
       <div className="mb-3">
         <label className="form-label">Correo</label>
         <input type="email" name="correo" className="form-control" value={form.correo} onChange={handleChange} required />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Nickname</label>
+        <input
+          name="nickname"
+          className="form-control"
+          value={form.nickname}
+          onChange={handleChange}
+          pattern="[A-Za-z0-9._\-]{3,20}"
+          title="Entre 3 y 20 caracteres: letras, números, punto, guion o guion bajo"
+          required
+        />
       </div>
 
       <div className="row">
@@ -233,6 +248,7 @@ function AdminUsuarios() {
                     <th>ID</th>
                     <th>RUN</th>
                     <th>Nombre</th>
+                    <th>Nickname</th>
                     <th>Correo</th>
                     <th>Rol</th>
                     <th>Región</th>
@@ -245,6 +261,7 @@ function AdminUsuarios() {
                       <td>{u.id}</td>
                       <td>{u.run}</td>
                       <td>{u.nombre} {u.apellido}</td>
+                      <td>{u.nickname ? `@${u.nickname}` : '—'}</td>
                       <td>{u.correo}</td>
                       <td>{u.rol}</td>
                       <td>{u.region || '—'}</td>

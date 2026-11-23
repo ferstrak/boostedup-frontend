@@ -10,6 +10,7 @@ function Registro() {
     nombre: '',
     apellido: '',
     correo: '',
+    nickname: '',
     clave: '',
     fechaNacimiento: '',
     region: '',
@@ -68,6 +69,23 @@ function Registro() {
           <div className="col-md-6 mb-3">
             <label className="form-label">Apellido</label>
             <input name="apellido" className="form-control" value={form.apellido} onChange={handleChange} required />
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Nickname *</label>
+          <input
+            name="nickname"
+            className="form-control"
+            value={form.nickname}
+            onChange={handleChange}
+            placeholder="Ej: Vapor_Fan92"
+            pattern="[A-Za-z0-9._\-]{3,20}"
+            title="Entre 3 y 20 caracteres: letras, números, punto, guion o guion bajo"
+            required
+          />
+          <div className="form-text" style={{ color: 'var(--vw-text)', opacity: 0.6 }}>
+            Es el nombre que se verá en los blogs y comentarios. Entre 3 y 20 caracteres, sin espacios.
           </div>
         </div>
 

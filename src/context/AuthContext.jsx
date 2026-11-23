@@ -62,8 +62,8 @@ export function AuthProvider({ children }) {
   const esAdmin = rol === 'admin'
   const esVendedor = rol === 'vendedor'
   const puedeVerPanel = esAdmin || esVendedor
-  // Las cuentas creadas con Google llegan sin datos de envío
-  const perfilIncompleto = !!usuario && (!usuario.direccion || !usuario.region || !usuario.comuna)
+  // Las cuentas creadas con Google llegan sin nickname ni datos de envío
+  const perfilIncompleto = !!usuario && (!usuario.nickname || !usuario.direccion || !usuario.region || !usuario.comuna)
 
   return (
     <AuthContext.Provider value={{

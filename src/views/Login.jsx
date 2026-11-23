@@ -20,8 +20,9 @@ function Login() {
     try {
       const sesion = await apiLogin(correo, clave)
       login(sesion)
-      // Admin y vendedor van al panel; el cliente a la tienda
-      navigate(rutaInicialPorRol(sesion.usuario))
+      // Sin nickname (cuenta antigua): primero lo completa. Si no, admin y vendedor van al panel y el cliente a la tienda
+      if (!sesion.usuario.nickname) navigate('/completar-perfil')
+      else navigate(rutaInicialPorRol(sesion.usuario))
     } catch (err) {
       setError(err.message || 'Error al iniciar sesión')
     } finally {

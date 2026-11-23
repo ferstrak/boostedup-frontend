@@ -9,6 +9,12 @@ import {
 } from '../services/api'
 import { useAuth } from '../context/AuthContext'
 
+/** Nombre que se muestra del autor: su nickname (@nick) o, si no tiene, nombre y apellido. */
+function nombrePublico({ autor_nickname, autor_nombre, autor_apellido }) {
+  if (autor_nickname) return `@${autor_nickname}`
+  return [autor_nombre, autor_apellido].filter(Boolean).join(' ')
+}
+
 function ComentarioItem({ comentario, respuestas, onResponder, usuario, onEliminar, onEditar, blogAutorId }) {
   const [respondiendo, setRespondiendo] = useState(false)
   const [texto, setTexto] = useState('')
@@ -39,7 +45,7 @@ function ComentarioItem({ comentario, respuestas, onResponder, usuario, onElimin
     <div className="vapor-card p-3 mb-3">
       <div className="d-flex justify-content-between">
         <strong style={{ color: 'var(--vw-cyan)' }}>
-          {comentario.autor_nombre} {comentario.autor_apellido}
+          {nombrePublico(comentario)}
         </strong>
         <small style={{ opacity: 0.6 }}>
           {comentario.fecha ? new Date(comentario.fecha).toLocaleString('es-CL') : ''}
@@ -235,7 +241,7 @@ function BlogDetalle() {
       <div className="vapor-card p-4 mb-4">
         <h1 style={{ color: 'var(--vw-pink)' }}>{blog.titulo}</h1>
         <p style={{ opacity: 0.7 }}>
-          Por {blog.autor_nombre} {blog.autor_apellido} · {new Date(blog.fecha).toLocaleDateString('es-CL')}
+          Por {nombrePublico(blog)} · {new Date(blog.fecha).toLocaleDateString('es-CL')}
           {blog.categoria ? ` · ${blog.categoria}` : ''}
         </p>
 
