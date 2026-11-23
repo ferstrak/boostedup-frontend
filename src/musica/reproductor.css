@@ -1,0 +1,155 @@
+/* =====================================================================
+   REPRODUCTOR DE MÚSICA (flotante, esquina inferior izquierda)
+   ===================================================================== */
+
+.reproductor {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1040; /* sobre la página, debajo de los easter eggs */
+    width: 250px;
+    padding: 10px 14px 12px;
+    background-color: rgba(26, 11, 46, 0.92);
+    border: 2px solid var(--vw-purple);
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(185, 103, 255, 0.35);
+    font-family: 'VT323', monospace;
+    color: var(--vw-text);
+}
+
+/* Los botones no usan la regla global de button (borde rosado grueso) */
+.reproductor button {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    font-family: inherit;
+    text-transform: none;
+    cursor: pointer;
+}
+.reproductor button:hover { background: transparent; }
+
+.reproductor-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.reproductor-etiqueta {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.55rem;
+    color: var(--vw-cyan);
+    text-shadow: 0 0 6px var(--vw-cyan);
+}
+.reproductor-cerrar {
+    color: var(--vw-purple) !important;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+.reproductor-cerrar:hover { color: var(--vw-cyan) !important; }
+
+/* Título con texto deslizante si es largo */
+.reproductor-titulo {
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.25rem;
+    color: var(--vw-pink);
+    text-shadow: 0 0 6px rgba(255, 113, 206, 0.6);
+}
+.reproductor-titulo span { display: inline-block; }
+.reproductor-titulo .desliza {
+    padding-left: 100%;
+    animation: reproductor-desliza 10s linear infinite;
+}
+@keyframes reproductor-desliza {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+}
+
+/* Barras (avance y volumen) */
+.reproductor input[type="range"] {
+    width: 100%;
+    height: 4px;
+    padding: 0;
+    border: none;
+    background: rgba(185, 103, 255, 0.35);
+    accent-color: var(--vw-cyan);
+    cursor: pointer;
+}
+.reproductor-barra { margin-top: 6px; }
+.reproductor-tiempos {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    opacity: 0.75;
+}
+
+.reproductor-controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 4px 0 6px;
+}
+.reproductor-controles button {
+    color: var(--vw-purple) !important;
+    font-size: 1.15rem;
+}
+.reproductor-controles button:hover { color: var(--vw-cyan) !important; }
+.reproductor-controles .reproductor-play {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--vw-cyan) !important;
+    border-radius: 50%;
+    color: var(--vw-cyan) !important;
+    font-size: 0.95rem;
+    box-shadow: 0 0 10px rgba(1, 205, 254, 0.4) !important;
+}
+.reproductor-controles .reproductor-play:hover {
+    background: var(--vw-cyan) !important;
+    color: var(--vw-bg) !important;
+}
+
+.reproductor-volumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+.reproductor-pista {
+    margin-top: 4px;
+    text-align: right;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* Minimizado: solo un botón redondo con la nota */
+.reproductor-mini {
+    width: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+.reproductor .reproductor-boton-mini {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--vw-purple);
+    background: rgba(26, 11, 46, 0.92);
+    color: var(--vw-pink);
+    font-size: 1.5rem;
+    line-height: 1;
+    box-shadow: 0 0 14px rgba(185, 103, 255, 0.45);
+}
+.reproductor .reproductor-boton-mini:hover { border-color: var(--vw-cyan); color: var(--vw-cyan); background: rgba(26, 11, 46, 0.92); }
+.reproductor .reproductor-boton-mini.sonando { animation: reproductor-latido 1.2s ease-in-out infinite; }
+@keyframes reproductor-latido {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 113, 206, 0.5); }
+    50%      { box-shadow: 0 0 22px rgba(255, 113, 206, 0.9); }
+}
+
+@media (max-width: 576px) {
+    .reproductor { left: 10px; bottom: 10px; width: calc(100vw - 20px); max-width: 300px; }
+    .reproductor-mini { width: auto; }
+}
