@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciando sesión…</title>
+  <style>
+    body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;
+           background: #1a0b2e; color: #01cdfe; font-family: monospace; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <p>Iniciando sesión con Google…</p>
+  <script>
+    // Google vuelve aquí con el resultado en el "#" de la URL:
+    //   #id_token=...&state=...   o   #error=access_denied&state=...
+    // Se lo entregamos a la ventana de la tienda y esta ventana se cierra.
+    var datos = {};
+    new URLSearchParams(window.location.hash.slice(1)).forEach(function (valor, clave) { datos[clave] = valor; });
+    datos.tipo = 'google-login';
+
+    if (window.opener && !window.opener.closed) {
+      // Modo ventana emergente (lo normal)
+      window.opener.postMessage(datos, window.location.origin);
+      window.close();
+    } else {
+      // Si el navegador bloqueó la ventana emergente se usó redirección:
+      // se guarda el resultado y se vuelve al login, que lo procesa.
+      sessionStorage.setItem('google-login', JSON.stringify(datos));
+      window.location.replace(sessionStorage.getItem('google-volver') || '/login');
+    }
+  </script>
+</body>
+</html>
